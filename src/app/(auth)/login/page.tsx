@@ -18,7 +18,7 @@ const page: FC<pageProps> = ({ }) => {
             // display error message to user
             toast.error('Something went wrong with your login.') 
         } finally {
-            isLoading(false)
+            setIsLoading(false)
         }
     }
 

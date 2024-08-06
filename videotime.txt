@@ -1,1 +1,8 @@
-84:28 min
+1h:53 min
+
+
+NEXTAUTH_SECRET=supersecret
+
+
+GOOGLE_CLIENT_ID=798650181971-gfafkvmvb7bmee3rgppnkb70rvjrrt25.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
