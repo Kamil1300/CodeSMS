@@ -1,5 +1,6 @@
 import { fetchRedis } from '@/helpers/redis'
 import { authOptions } from '@/lib/auth'
+import { db } from '@/lib/db'
 import { messageArrayValidator } from '@/lib/validations/message'
 import { Radius } from 'lucide-react'
 import { getServerSession } from 'next-auth'
