@@ -10,6 +10,7 @@ import SignOutButton from '@/components/SignOutButton'
 import FriendRequestSidebarOption from '@/components/FriendRequestSidebarOption'
 import { fetchRedis } from '@/helpers/redis'
 import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id'
+import SidebarChatlist from '@/components/SidebarChatlist'
 
 interface LayoutProps { 
     children : ReactNode
@@ -45,14 +46,14 @@ const Layout = async ({children}: LayoutProps) => {
         <Icons.Logo/>
     </Link>
 
-    <div className="text-xs font-semibold leading-6 text-gray-400">
+    {friends.length > 0 ? (<div className="text-xs font-semibold leading-6 text-gray-400">
         Your chats
-    </div>
+    </div>) : null}
 
     <nav className='flex flex-1 flex-col'>
         <ul role='list' className='flex flex-1 flex-col gap-y-7'>
             <li>
-                // chats that this user has
+                <SidebarChatlist friends={friends}/>
             </li>
             <li>
             <div className='text-xs font-semibold leading-6 text-gray-400'>
@@ -74,13 +75,13 @@ const Layout = async ({children}: LayoutProps) => {
                         </li>
                     )
                 })}
-            </ul>
-            </li>
-
             <li>
                 <FriendRequestSidebarOption sessionId={session.user.id} initialUnseenRequestCount={unseenRequestCount}/>
             </li>
+            </ul>
+            </li>
 
+                </ul>
             <li className='-mx-6 mt-auto flex items-center'>
                 <div className='flex flex-1 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900'>
                     <div className='relative h-8 w-8 bg-gray-50'>
@@ -102,7 +103,6 @@ const Layout = async ({children}: LayoutProps) => {
                 </div>
                 <SignOutButton className="h-full aspect-square" />
             </li>
-        </ul>
     </nav>
 
     </div>
