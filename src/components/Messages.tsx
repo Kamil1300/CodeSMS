@@ -30,7 +30,7 @@ const Messages: FC<MessagesProps> = ({
             'justify-end' : isCurrentUser
           })}>
             <div className={cn('flex flex-col space-y-2 text-base max-w-xs mx-2',{
-              'order-1, items-end' : isCurrentUser,
+              'order-1 items-end' : isCurrentUser,
               'order-2 items-start' : !isCurrentUser,
             })}>
               <span className={cn('px-4 py-2 rounded-lg inline-block',{

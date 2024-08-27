@@ -1,6 +1,9 @@
 import { fetchRedis } from "@/helpers/redis"
 import { authOptions } from "@/lib/auth"
+import { db } from "@/lib/db"
+import { Message, messageValidator } from "@/lib/validations/message"
 import { getServerSession } from "next-auth"
+import {nanoid} from  'nanoid'
 
 export async function POST(req:Request){
     try {
@@ -29,10 +32,29 @@ export async function POST(req:Request){
 
         const sender = JSON.parse(rawSender) as User
         
+        const timestamp = Date.now()
+
+        const messageData: Message = {
+            id: nanoid(),
+            senderId: session.user.id,
+            text,
+            timestamp,
+        } 
+
+        const message = messageValidator.parse(messageData)
+
         // all valid, send the message
+        await db.zadd(`chat:${chatId}:messages`,{
+            score: timestamp,
+            member: JSON.stringify(message)
+        })
         
+        return new Response('OK')
 
     } catch (error) {
-        
+        if(error instanceof Error){
+            return new Response(error.message,{status: 500})
+        }
+        return new Response('Internal Server Error',{status : 500})
     }
 }
