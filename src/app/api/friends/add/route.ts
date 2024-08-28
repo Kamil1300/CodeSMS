@@ -45,7 +45,7 @@ export async function POST(req: Request) {
         }
 
         // valid request, send friend request
-        db.sadd(`user:${idToAdd}:incoming_friend_requests`,session.user.id)
+        await db.sadd(`user:${idToAdd}:incoming_friend_requests`,session.user.id)
 
         return new Response('OK')
 
