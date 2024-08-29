@@ -32,11 +32,10 @@ export async function POST(req: Request) {
             return new Response('Already friends', { status: 400 })
         }
 
+        // checking if idToAdd(second user) has panding request from us(session.user.id)
         const hasFriendRequest = await fetchRedis('sismember',
             `user:${session.user.id}:incoming_friend_requests`, idToAdd
         )
-
-        // const hasFriendRequest = await fetchRedis('sismember',`user:${idToAdd}:incoming_friend_requests`,session.user.id)
         
         if (!hasFriendRequest) {
             return new Response('No friend request', { status: 400 })
