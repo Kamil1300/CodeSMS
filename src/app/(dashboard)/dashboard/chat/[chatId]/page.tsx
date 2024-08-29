@@ -20,7 +20,7 @@ async function getChatMessages(chatId : string){
   try {
     const results: string[] = await fetchRedis(
       'zrange',
-      `chat${chatId}:messages`,
+      `chat:${chatId}:messages`,
       0,
       -1
     )
