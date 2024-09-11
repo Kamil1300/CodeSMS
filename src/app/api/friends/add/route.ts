@@ -6,6 +6,8 @@ import { fetchRedis } from "@/helpers/redis"
 import { db } from "@/lib/db"
 import {z} from 'zod'
 import Email from "next-auth/providers/email"
+import { pusherServer } from "@/lib/pusher"
+import { toPusherKey } from "@/lib/utils"
 
 export async function POST(req: Request) {
     try {
@@ -45,6 +47,13 @@ export async function POST(req: Request) {
         }
 
         // valid request, send friend request
+
+        pusherServer.trigger(
+            toPusherKey(`user:${idToAdd}:incoming_friend_requests`),'incoming_friend_request', {
+                senderId:session.user.id,
+                senderEmail: session.user.email
+            })
+
         await db.sadd(`user:${idToAdd}:incoming_friend_requests`,session.user.id)
 
         // return new Response('OK')
