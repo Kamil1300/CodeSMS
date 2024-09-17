@@ -10,7 +10,7 @@ import SignOutButton from '@/components/SignOutButton'
 import FriendRequestSidebarOption from '@/components/FriendRequestSidebarOption'
 import { fetchRedis } from '@/helpers/redis'
 import { getFriendsByUserId } from '@/helpers/get-friends-by-user-id'
-import SidebarChatlist from '@/components/SidebarChatlist'
+import SidebarChatlist from '@/components/SidebarChatList'
 
 interface LayoutProps {
     children: ReactNode
