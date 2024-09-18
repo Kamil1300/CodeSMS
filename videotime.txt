@@ -1,4 +1,5 @@
-6h:28 min
+7h:5 min
 
 - add photo to code feature
-- add code snippet add and can be share via link can be view without log in but have to log in for copy
+- add code snippet collection private and public add and can be share via link can be view without log in but have to log in for copy
+- add coding challenge between two people by gmail
