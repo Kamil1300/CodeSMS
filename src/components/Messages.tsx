@@ -87,7 +87,7 @@ const Messages: FC<MessagesProps> = ({
         </div>
       )
     })}
-  </div>
+  </div>  
 }
 
 export default Messages
