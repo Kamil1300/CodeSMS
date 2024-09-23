@@ -8,7 +8,7 @@ import { Icons } from '@/components/Icons'
 
 interface pageProps { }
 
-const page: FC<pageProps> = ({ }) => {
+const Page: FC<pageProps> = ({ }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     async function loginWithGoogle() {
@@ -73,4 +73,4 @@ const page: FC<pageProps> = ({ }) => {
     )
 }
 
-export default page
+export default Page
