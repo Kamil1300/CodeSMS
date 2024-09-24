@@ -1,4 +1,4 @@
-7h:5 min
+7h:46 min
 
 - add photo to code feature
 - add code snippet collection private and public add and can be share via link can be view without log in but have to log in for copy
