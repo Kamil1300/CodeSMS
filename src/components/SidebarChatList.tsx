@@ -21,14 +21,16 @@ const SidebarChatlist: FC<SidebarChatlistProps> = ({ friends, sessionId }) => {
   const router = useRouter()
   const pathname = usePathname()
   const [unseenMessages, setUnseenMessages] = useState<Message[]>([])
+  const [activeChats,setActiveChats] = useState<User[]>(friends)
 
   useEffect(() => {
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:chats`))
     pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`))
 
-    const newFriendHandler = () => {
+    const newFriendHandler = (newFriend: User) => {
       // to refresh page without hard reloding
-      router.refresh()
+      // router.refresh()
+      setActiveChats((prev) => [...prev,newFriend])
     }
 
     const chatHandler = (message: ExtendedMessage) => {
